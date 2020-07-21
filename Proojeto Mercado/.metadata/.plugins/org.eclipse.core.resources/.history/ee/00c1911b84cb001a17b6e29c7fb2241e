@@ -1,0 +1,274 @@
+package view;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+import dao.ClienteDAO;
+import dao.ClienteDAOImpl;
+import dao.FuncionarioDAO;
+import dao.FuncionarioDAOImpl;
+import dao.ProdutoDAO;
+import dao.ProdutoDAOImpl;
+import dao.VendasDAO;
+import dao.VendasDAOImpl;
+import entdidade.Cliente;
+import entdidade.Funcionario;
+import entdidade.Produto;
+import entdidade.Vendas;
+
+public class Mercado {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		// Classe que vai receber informação do usuario
+		Scanner scan = new Scanner(System.in);
+		// Interface do DAO do cliente que faz a chamada dos metodos.
+		ClienteDAO clienteDAO = new ClienteDAOImpl();
+		// Criar cliente
+		Cliente clienteCreate = new Cliente();
+		// Editar cliente
+		Cliente clienteEdit = new Cliente();
+		// Remover cliente
+		Cliente removerCliente = new Cliente();
+		// Interface do funcionario, que traz as chamadas dos metódos.
+		FuncionarioDAO funcionarioDAO = new FuncionarioDAOImpl();
+		// Criar funcionario
+		Funcionario funcionarioCreate = new Funcionario();
+		// Editar funcionario
+		Funcionario funcionarioEdit = new Funcionario();
+		// Remover funcionario
+		Funcionario funcionarioRemove = new Funcionario();
+		// Interface dos metodos produto
+		ProdutoDAO produtoDAO = new ProdutoDAOImpl();
+		// Criar produto
+		Produto produtoCreate = new Produto();
+		// Alterar produto
+		Produto produtoEdit = new Produto();
+		// Remover produto
+		Produto produtoRemove = new Produto();
+		// interface vendas
+		VendasDAO vendasDAO = new VendasDAOImpl();
+		// Criar vendas
+		Vendas vendaCreate = new Vendas();
+		// remover vendas
+		Vendas vendaRemove = new Vendas();
+
+		// condição do/while
+		boolean condicao = true;
+		// Condicao switchcase
+		int opcao = 0;
+
+		do {
+			System.out.println("****** Mercado ******");
+			System.out.println("(1) Cadastro de clientes.");
+			System.out.println("(2) Editar cadastro cliente.");
+			System.out.println("(3) Excluir cadastro cliente");
+			System.out.println("(4) Lista de clientes.");
+			System.out.println("(5) Procurar clientes.");
+			System.out.println("(6) Cadastrar Funcionario");
+			System.out.println("(7) Alterar Funcionario");
+			System.out.println("(8) Pesquisar Funcionario");
+			System.out.println("(9) Remover Funcionario");
+			System.out.println("(10) Lista de Funcionario");
+			System.out.println("(11) Cadastrar produto");
+			System.out.println("(12) Alterar produto");
+			System.out.println("(13) Remover produto");
+			System.out.println("(14) Pesquisar produto");
+			System.out.println("(15) Lista de produto");
+
+			System.out.println(
+					"OBS: Encontre seu número de cadastro na lista de clientes. Será útil para outras funções.");
+
+			opcao = scan.nextInt();
+
+			switch (opcao) {
+
+			// Cadastro cliente
+			case (1):
+				System.out.println("****** Bem - Vindo ******");
+				System.out.println("Informe seu nome: ");
+				clienteCreate.setNomeCliente(scan.next());
+				System.out.println("Digite uma senha: ");
+				clienteCreate.setSenha(scan.nextInt());
+				clienteDAO.inserirCliente(clienteCreate);
+				System.out.println("****** Cadastro realizado ******");
+				break;
+			// Editar cliente
+			case (2):
+				System.out.println("****** Alterar dados cliente ******");
+				System.out.println("Informe como gostaria de deixar seu nome: ");
+				clienteEdit.setNomeCliente(scan.next());
+				System.out.println("Caso deseja uma nova senha informe a baixo, se não, é só repetir: ");
+				clienteEdit.setSenha(scan.nextInt());
+				System.out.println("Informe seu número de cadastro (ID): ");
+				clienteEdit.setId_cliente(scan.nextInt());
+				clienteDAO.alterarCliente(clienteEdit);
+				System.out.println("Cadastro alterado.");
+				break;
+			// Remover Cliente
+			case (3):
+				System.out.println("****** Remover Cadastros ******");
+				System.out.println("Informe seu número de cadastro: ");
+				clienteDAO.removerCliente(scan.nextInt());
+				System.out.println("****** Cadastro removido ******");
+				break;
+
+			// Lista Clientes.
+			case (4):
+				System.out.println("****** Lista de clientes ******");
+				List<Cliente> listarClientes = clienteDAO.listarTodosClientes();
+				for (Cliente c : listarClientes) {
+					System.out.println("Numero de Cadastro: " + c.getId_cliente() + "| Nome: " + c.getNomeCliente());
+				}
+				break;
+
+			// Procurar clientes.
+			case (5):
+				System.out.println("****** Digite o nome do cliente que deseja encontrar. ******");
+				System.out.println("Digite o nome do cliente que deseja encontrar: ");
+				List<Cliente> listaProcurar = clienteDAO.pesquisarCliente(scan.next());
+				for (Cliente c : listaProcurar) {
+					System.out.println("Nome: " + c.getNomeCliente());
+				}
+				break;
+
+			case (6):
+				System.out.println("****** Cadastrar Funcionario ******");
+				System.out.println("Insira o nome do funcionario: ");
+				funcionarioCreate.setNomeFuncionaro(scan.next());
+				System.out.println("Informe o salario do funcionário: ");
+				funcionarioCreate.setSalarioFuncionaro(scan.nextInt());
+				scan.nextLine();
+				System.out.println("Cadastre um senha para o funcionario:");
+				funcionarioCreate.setSenhaFuncionario(scan.nextInt());
+				funcionarioDAO.inserirFuncionario(funcionarioCreate);
+				System.out.println("****** Funcionario Cadastrado ******");
+				break;
+
+			case (7):
+				System.out.println("****** Alterar Funcionario ******");
+				System.out.println("Insira seu nome: ");
+				funcionarioEdit.setNomeFuncionaro(scan.next());
+				System.out.println("Insira o nova senha que deseja alterar: ");
+				funcionarioEdit.setSenhaFuncionario(scan.nextInt());
+				System.out.println("Insira o seu número de registro: ");
+				funcionarioEdit.setId_Funcionario(scan.nextInt());
+				System.out.println("****** Funcionario alterado. ******");
+
+			case (8):
+				System.out.println("****** Pesquisar Funcionario ******");
+				System.out.println("Digie o nome do funcionario: ");
+				List<Funcionario> pesquisarFuncionario = funcionarioDAO.pesquisarFuncionario(scan.next());
+				for (Funcionario f : pesquisarFuncionario) {
+					System.out
+							.println("Número Cadastro: " + f.getId_Funcionario() + "| Nome: " + f.getNomeFuncionaro());
+				}
+				break;
+
+			case (9):
+				System.out.println("****** Remover Funcionario ******");
+				System.out.println("Digite o número de identificação do funcionário: ");
+				funcionarioDAO.removerFuncionario(scan.nextInt());
+				System.out.println("****** Funcionario removido ******");
+				break;
+
+			case (10):
+				System.out.println("****** Lista de Funcionarios ******");
+				List<Funcionario> listarTodosFuncionarios = new ArrayList();
+				for (Funcionario f : listarTodosFuncionarios) {
+					System.out
+							.println("Número de Cadastro: " + f.getId_Funcionario() + "| Nome: " + f.getNomeFuncionaro()
+									+ "| Salário: " + f.getSalarioFuncionaro() + "| Situação: " + f.getAtivo());
+				}
+				break;
+
+			case (11):
+				System.out.println("****** Cadastrar Produto ******");
+				System.out.println("Insira o nome do produto: ");
+				produtoCreate.setNomeProduto(scan.next());
+				System.out.println("Insira a quantidade de produto disponivél: ");
+				produtoCreate.setQuantidade(scan.nextInt());
+				System.out.println("Insira o valor do produto: ");
+				produtoCreate.setvalor(scan.nextInt());
+				produtoDAO.inserirProduto(produtoCreate);
+				System.out.println("****** Produto Inserido ******");
+				break;
+
+			case (12):
+				System.out.println("****** Alterar Produto ******");
+				System.out.println("Insira o nome do produto: ");
+				produtoEdit.setNomeProduto(scan.next());
+				System.out.println("Insira a quantidade de produto disponivél: ");
+				produtoEdit.setQuantidade(scan.nextInt());
+				System.out.println("Insira o valor do produto: ");
+				produtoEdit.setvalor(scan.nextInt());
+				System.out.println("Insira o número de cadastro do produto que deseja alterar: ");
+				produtoEdit.setId_Produto(scan.nextInt());
+				System.out.println("****** Produto alterado ******");
+				break;
+
+			case (13):
+				System.out.println("****** Remover produto ******");
+				System.out.println("Insira o número de cadastro do produto que deseja remover: ");
+				produtoRemove.setId_Produto(scan.nextInt());
+				System.out.println("****** Produto removido ******");
+				break;
+
+			case (14):
+				System.out.println("****** Pesquisar produto ******");
+				System.out.println("Insira o nome do produto que deseja procurar: ");
+				List<Produto> pesquisarProdutos = produtoDAO.pesquisarProdutos(scan.next());
+				for (Produto p : pesquisarProdutos) {
+					System.out.println("Numérod de Cadastro: " + p.getId_Produto() + "| Nome produto: "
+							+ p.getNomeProduto() + "| Quantidade: " + p.getQuantidade() + "| Valor: " + p.getvalor());
+				}
+				break;
+
+			case (15):
+				System.out.println("****** Lista de Produtos ******");
+				List<Produto> listarProdutos = new ArrayList<Produto>();
+				for (Produto p : listarProdutos) {
+					System.out.println("Numéro de Cadastro: " + p.getId_Produto() + "| Nome produto: "
+							+ p.getNomeProduto() + "| Quantidade: " + p.getQuantidade() + "| Valor: " + p.getvalor());
+				}
+				break;
+
+			case (16):
+				System.out.println("****** Cadastrar Vendas ******");
+				System.out.println("Insira o número de cadastro do cliente: ");
+				vendaCreate.setId_Cliente(scan.nextInt());
+				System.out.println("Insira o numéro de referência do produto: ");
+				vendaCreate.setId_Produto(scan.nextInt());
+				System.out.println("Insira o número de identificação do funcionário: ");
+				vendaCreate.setId_Funcionario(scan.nextInt());
+				System.out.println("****** Venda cadastrada ******");
+
+			case (17):
+				System.out.println("****** Remover venda ******");
+				System.out.println("Insira o número de cadastro da venda: ");
+				vendaRemove.setId_Vendas(scan.nextInt());
+				System.out.println("****** Venda removida do sistema ******");
+
+			case (18):
+				System.out.println("****** Lista de vendas ******");
+				List<Vendas> listarVendas = new ArrayList();
+				for (Vendas v : listarVendas) {
+					System.out.println("Número da venda: " + v.getId_Vendas() + "| Número do cliente: "
+							+ v.getId_Cliente() + "|Número referência produto: " + v.getId_Produto()
+							+ "| Número Vendedor: " + v.getId_Funcionario());
+				}
+
+				// sair
+			default:
+				System.out.println("Obrigado por usar nosso sistema. Volte Sempre!");
+				condicao = false;
+				break;
+
+			}
+
+		} while (condicao == true);
+	}
+
+}

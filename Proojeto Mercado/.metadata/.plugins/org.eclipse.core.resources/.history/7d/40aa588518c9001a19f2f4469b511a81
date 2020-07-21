@@ -1,0 +1,60 @@
+package dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.util.List;
+
+import entdidade.Cliente;
+import util.JdbcUtil;
+
+public class ClienteDAOImpl implements ClienteDAO {
+
+	//Instânciando cliente
+	Cliente cliente = new Cliente();
+	
+	@Override
+	public void inserirCliente(Cliente cliente) {
+		// TODO Auto-generated method stub
+		String sql ="INSERT INTO MERCADO.CLIENTE (NOME_CLIENTE) VALUES (?)";
+		
+		Connection conexao;
+		
+		try {
+			
+			conexao = JdbcUtil.getConexao();
+			PreparedStatement ps = conexao.prepareStatement(sql);
+			ps.setString(1, );
+			
+			
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+
+	@Override
+	public void alterarCliente(Cliente cliente) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void removerCliente(Cliente id_cliente) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<Cliente> pesquisarCliente(String Nome) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Cliente> listarTodosClientes() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

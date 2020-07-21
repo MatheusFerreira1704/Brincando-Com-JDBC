@@ -1,0 +1,148 @@
+package view;
+
+import java.util.List;
+import java.util.Scanner;
+
+import dao.ClienteDAO;
+import dao.ClienteDAOImpl;
+import dao.FuncionarioDAO;
+import dao.FuncionarioDAOImpl;
+import entdidade.Cliente;
+import entdidade.Funcionario;
+
+public class Mercado {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		// Classe que vai receber informação do usuario
+		Scanner scan = new Scanner(System.in);
+		// Interface do DAO do cliente que faz a chamada dos metodos.
+		ClienteDAO clienteDAO = new ClienteDAOImpl();
+		// Criar cliente
+		Cliente clienteCreate = new Cliente();
+		// Editar cliente
+		Cliente clienteEdit = new Cliente();
+		// Remover cliente
+		Cliente removerCliente = new Cliente();
+		// Interface do funcionario, que traz as chamadas dos metódos.
+		FuncionarioDAO funcionarioDAO = new FuncionarioDAOImpl();
+		// Criar funcionario
+		Funcionario funcionarioCreate = new Funcionario();
+		// Editar funcionario
+		Funcionario funcionarioEdit = new Funcionario();
+		// Remover funcionario
+		Funcionario funcionarioRemove = new Funcionario();
+		// condição do/while
+		boolean condicao = true;
+		// Condicao switchcase
+		int opcao = 0;
+
+		do {
+			System.out.println("****** Mercado ******");
+			System.out.println("(1) Cadastro de clientes.");
+			System.out.println("(2) Editar cadastro cliente.");
+			System.out.println("(3) Excluir cadastro cliente");
+			System.out.println("(4) Lista de clientes.");
+			System.out.println("(5) Procurar clientes.");
+			System.out.println("(6) Cadastrar Funcionario");
+			System.out.println("(7) Alterar Funcionario");
+			System.out.println("(8) Pesquisar Funcionario");
+			System.out.println("(9) Remover Funcionario");
+			System.out.println("(10) Lista de Funcionario");
+
+			System.out.println(
+					"OBS: Encontre seu número de cadastro na lista de clientes. Será útil para outras funções.");
+
+			opcao = scan.nextInt();
+
+			switch (opcao) {
+
+			// Cadastro cliente
+			case (1):
+				System.out.println("****** Bem - Vindo ******");
+				System.out.println("Informe seu nome: ");
+				clienteCreate.setNomeCliente(scan.next());
+				System.out.println("Digite uma senha: ");
+				clienteCreate.setSenha(scan.nextInt());
+				clienteDAO.inserirCliente(clienteCreate);
+				System.out.println("****** Cadastro realizado ******");
+				break;
+			// Editar cliente
+			case (2):
+				System.out.println("****** Alterar dados cliente ******");
+				System.out.println("Informe como gostaria de deixar seu nome: ");
+				clienteEdit.setNomeCliente(scan.next());
+				System.out.println("Caso deseja uma nova senha informe a baixo, se não, é só repetir: ");
+				clienteEdit.setSenha(scan.nextInt());
+				System.out.println("Informe seu número de cadastro (ID): ");
+				clienteEdit.setId_cliente(scan.nextInt());
+				clienteDAO.alterarCliente(clienteEdit);
+				System.out.println("Cadastro alterado.");
+				break;
+			// Remover Cliente
+			case (3):
+				System.out.println("****** Remover Cadastros ******");
+				System.out.println("Informe seu número de cadastro: ");
+				clienteDAO.removerCliente(scan.nextInt());
+
+				// Lista Clientes.
+			case (4):
+				System.out.println("****** Lista de clientes ******");
+				List<Cliente> listarClientes = clienteDAO.listarTodosClientes();
+				for (Cliente c : listarClientes) {
+					System.out.println("Numero de Cadastro: " + c.getId_cliente() + "| Nome: " + c.getNomeCliente());
+				}
+				break;
+
+			// Procurar clientes.
+			case (5):
+				System.out.println("****** Digite o nome do cliente que deseja encontrar. ******");
+				System.out.println("Digite o nome do cliente que deseja encontrar: ");
+				List<Cliente> listaProcurar = clienteDAO.pesquisarCliente(scan.next());
+				for (Cliente c : listaProcurar) {
+					System.out.println("Nome: " + c.getNomeCliente());
+				}
+				break;
+
+			case (6):
+				System.out.println("****** Cadastrar Funcionario ******");
+				System.out.println("Insira o nome do funcionario: ");
+				funcionarioCreate.setNomeFuncionaro(scan.next());
+				System.out.println("Informe o salario do funcionário: ");
+				funcionarioCreate.setSalarioFuncionaro(scan.nextInt());
+				funcionarioDAO.inserirFuncionario(funcionarioCreate);
+				System.out.println("****** Funcionario Cadastrado ******");
+				break;
+
+			case (7):
+
+			case (8):
+				System.out.println("****** Pesquisar Funcionario ******");
+				System.out.println("Digie o nome do funcionario: ");
+				List<Funcionario> pesquisarFuncionario = funcionarioDAO.pesquisarFuncionario(scan.next());
+				for (Funcionario f : pesquisarFuncionario) {
+					System.out
+							.println("Número Cadastro: " + f.getId_Funcionario() + "| Nome: " + f.getNomeFuncionaro());
+				}
+				break;
+
+			case (9):
+				System.out.println("****** Remover Funcionario ******");
+				System.out.println("Digite o número de identificação do funcionário: ");
+				funcionarioRemove.setId_Funcionario(scan.nextInt());
+				funcionarioDAO.removerFuncionario(funcionarioRemove);
+				System.out.println();
+
+				// sair
+			default:
+				System.out.println("Obrigado por usar nosso sistema. Volte Sempre!");
+				condicao = false;
+				break;
+
+			}
+
+		} while (condicao == true);
+	}
+
+}

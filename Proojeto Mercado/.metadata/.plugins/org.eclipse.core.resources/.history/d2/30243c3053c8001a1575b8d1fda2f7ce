@@ -1,0 +1,9 @@
+package entdidade;
+
+public class Funcionario {
+
+	private int id_Funcionario;
+	private String nomeFuncionaro;
+	private int salarioFuncionaro;
+
+}

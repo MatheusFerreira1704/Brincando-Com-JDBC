@@ -1,0 +1,58 @@
+package dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.util.List;
+
+import entdidade.Produto;
+import util.JdbcUtil;
+
+public class ProdutoDAOImpl implements ProdutoDAO {
+
+	Produto produto = new Produto();
+
+	@Override
+	public void inserirProduto(Produto produto) {
+		// TODO Auto-generated method stub
+		String sql = "INSERT INTO PRODUTO (NOME_PRODUTO, QUANTIDADE, VALOR) VALUES (?,?,?)";
+
+		Connection conexao;
+
+		try {
+			conexao = JdbcUtil.getConexao();
+			PreparedStatement ps = conexao.prepareStatement(sql);
+
+			ps.setString(1, produto.getNomeProduto());
+			ps.setInt(2, produto.getQuantidade());
+			ps.setInt(3, produto.getValor());
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void alterarProduto(Produto produto) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void removerProduto(Produto produto) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public List<Produto> pesquisarProdutos(String nome) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Produto> listarProdutos() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

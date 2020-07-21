@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;dao.FuncionarioDAOIpml&apos; to &apos;FuncionarioDAOImpl&apos;&#x0D;&#x0A;- Original project: &apos;MERCADO&apos;&#x0D;&#x0A;- Original element: &apos;dao.FuncionarioDAOIpml&apos;&#x0D;&#x0A;- Renamed element: &apos;dao.FuncionarioDAOImpl&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;FuncionarioDAOIpml&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;dao{FuncionarioDAOIpml.java[FuncionarioDAOIpml" matchStrategy="1" name="FuncionarioDAOImpl" qualified="false" references="true" similarDeclarations="false" stamp="1595276377237" textual="false" version="1.0"/>
+</session>

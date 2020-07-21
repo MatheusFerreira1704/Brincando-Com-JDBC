@@ -1,0 +1,42 @@
+package entdidade;
+
+import javax.persistence.Column;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Table (name="FUNCIONARIO")
+public class Funcionario {
+
+	@Id
+	@Column (name="ID_FUNCIONARIO")
+	private int id_Funcionario;
+
+	private String nomeFuncionaro;
+
+	private int salarioFuncionaro;
+
+	public int getId_Funcionario() {
+		return id_Funcionario;
+	}
+
+	public void setId_Funcionario(int id_Funcionario) {
+		this.id_Funcionario = id_Funcionario;
+	}
+
+	public String getNomeFuncionaro() {
+		return nomeFuncionaro;
+	}
+
+	public void setNomeFuncionaro(String nomeFuncionaro) {
+		this.nomeFuncionaro = nomeFuncionaro;
+	}
+
+	public int getSalarioFuncionaro() {
+		return salarioFuncionaro;
+	}
+
+	public void setSalarioFuncionaro(int salarioFuncionaro) {
+		this.salarioFuncionaro = salarioFuncionaro;
+	}
+
+}

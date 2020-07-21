@@ -1,0 +1,75 @@
+package dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.util.List;
+
+import entdidade.Funcionario;
+import util.JdbcUtil;
+
+public class FuncionarioDAOIpml implements FuncionarioDAO {
+
+	Funcionario funcionario = new Funcionario();
+
+	@Override
+	public void inserirFuncionario(Funcionario funcionario) {
+		// TODO Auto-generated method stub
+
+		String sql = "INSERT INTO FUNCIONARIO (NOME_FUNCIONARIO, SALARIO_FUNCIONARIO, ATIVO) VALUES (?, ?, ?)";
+
+		Connection conexao;
+
+		try {
+			// chamando a conexão
+			conexao = JdbcUtil.getConexao();
+			// Preparando a comunicação com o banco.
+			PreparedStatement ps = conexao.prepareStatement(sql);
+			ps.setString(1, funcionario.getNomeFuncionaro());
+			ps.setInt(2, funcionario.getSalarioFuncionaro());
+			ps.setString(3, "S");
+
+			ps.execute();
+			ps.close();
+			conexao.close();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	@Override
+	public void alterarFuncionario(Funcionario funcionario) {
+		// TODO Auto-generated method stub
+
+		String sql = "UPDATE FUNCIONARIO SET NOME_FUNCIONARIO = ? , SALARIO_FUNCIONARIO = ? WHERE ID_FUNCIONARIO = ?";
+
+		Connection conexao;
+
+		try {
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	@Override
+	public void removerFuncionario(Funcionario funcionario) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public List<Funcionario> pesquisarFuncionario(String nome) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Funcionario> listarTodosFuncionarios() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

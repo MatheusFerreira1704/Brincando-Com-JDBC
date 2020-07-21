@@ -1,0 +1,8 @@
+package entdidade;
+
+public class Produto {
+
+	private int id_Produto;
+	private String nomeProduto;
+	private int quantidade;
+}

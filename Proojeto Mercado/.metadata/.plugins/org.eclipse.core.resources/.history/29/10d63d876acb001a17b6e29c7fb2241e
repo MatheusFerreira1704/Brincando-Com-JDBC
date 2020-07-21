@@ -1,0 +1,33 @@
+package dao;
+
+import java.util.List;
+
+import entdidade.Vendas;
+
+public class VendasDAOImpl implements VendasDAO {
+
+	@Override
+	public void iserirVendas(Vendas vendas) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void alterarVendas(Vendas vendas) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void removerVendas(int id_Vendas) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public List<Vendas> listarVendas() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

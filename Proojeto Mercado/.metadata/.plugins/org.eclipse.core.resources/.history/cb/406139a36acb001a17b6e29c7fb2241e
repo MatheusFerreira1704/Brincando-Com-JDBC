@@ -1,0 +1,43 @@
+package dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.util.List;
+
+import entdidade.Vendas;
+import util.JdbcUtil;
+
+public class VendasDAOImpl implements VendasDAO {
+
+	Vendas vendas = new Vendas();
+
+	@Override
+	public void iserirVendas(Vendas vendas) {
+		// TODO Auto-generated method stub
+
+		String sql = "INSERT INTO VENDAS(ID_CLIENTE,ID_PRODUTO,ID_FUNCIONARIO) VALUES (?,?,?);";
+
+		Connection conexao;
+
+		try {
+			conexao = JdbcUtil.getConexao();
+			PreparedStatement ps = conexao.prepareStatement(sql);
+			ps.setInt(1, vendas.getId_Cliente());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void removerVendas(int id_Vendas) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public List<Vendas> listarVendas() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

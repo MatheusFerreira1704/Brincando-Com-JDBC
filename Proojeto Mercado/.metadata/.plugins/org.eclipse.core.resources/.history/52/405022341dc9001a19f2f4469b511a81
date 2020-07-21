@@ -1,0 +1,119 @@
+package dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+
+import entdidade.Cliente;
+import util.JdbcUtil;
+
+public class ClienteDAOImpl implements ClienteDAO {
+
+	// Instânciando cliente
+	Cliente cliente = new Cliente();
+
+	@Override
+	public void inserirCliente(Cliente cliente) {
+		// TODO Auto-generated method stub
+		String sql = "INSERT INTO CLIENTE (NOME_CLIENTE, ATIVO) VALUES (?,?)";
+
+		Connection conexao;
+
+		try {
+
+			conexao = JdbcUtil.getConexao();
+			PreparedStatement ps = conexao.prepareStatement(sql);
+			ps.setString(1, cliente.getNomeCliente());
+			ps.setString(2, "S");
+
+			ps.execute();
+			ps.close();
+			conexao.close();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	@Override
+	public void alterarCliente(Cliente cliente) {
+		// TODO Auto-generated method stub
+		String sql = "UPDATE CLIENTE SET NOME_CLIENTE = ? WHERE ID_CLIENTE= ? AND ATIVO = 'S'";
+
+		Connection conexao;
+
+		try {
+			conexao = JdbcUtil.getConexao();
+			PreparedStatement ps = conexao.prepareStatement(sql);
+			ps.setString(1, cliente.getNomeCliente());
+
+			ps.execute();
+			ps.close();
+			conexao.close();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void removerCliente(int id_cliente) {
+		// TODO Auto-generated method stub
+
+		String sql = "DELETE FROM CLIENTE WHERE ID_CLIENTE = ?";
+
+		Connection conexao;
+
+		try {
+			conexao = JdbcUtil.getConexao();
+			PreparedStatement ps = conexao.prepareStatement(sql);
+			ps.setInt(1, id_cliente);
+
+			ps.execute();
+			ps.close();
+			conexao.close();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	@Override
+	public List<Cliente> pesquisarCliente(String nome) {
+		// TODO Auto-generated method stub
+
+		String sql = "SELECT * FROM CLIENTE WHERE ATIVO = 'S'";
+
+		List<Cliente> pesquisarCliente = new ArrayList<Cliente>();
+
+		Connection conexao;
+
+		try {
+			conexao = JdbcUtil.getConexao();
+			PreparedStatement ps = conexao.prepareStatement(sql);
+			ps.setString(1, "%" + nome +"%");
+			ResultSet res = ps.executeQuery();
+
+			while (res.next()) {
+				Cliente cliente = new Cliente();
+
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return null;
+	}
+
+	@Override
+	public List<Cliente> listarTodosClientes() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

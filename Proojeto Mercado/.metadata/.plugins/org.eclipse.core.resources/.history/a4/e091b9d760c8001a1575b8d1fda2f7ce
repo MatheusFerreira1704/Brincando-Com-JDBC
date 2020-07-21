@@ -1,0 +1,26 @@
+package entdidade;
+
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
+@Table(name="VENDAS")
+public class Vendas {
+	
+	@Id
+	@GeneratedValue(generator = "S_VENDAS")
+	@SequenceGenerator(name = "S_VENDAS", sequenceName = "S_VENDAS", allocationSize = 1)
+	private int id_Vendas;
+	
+	@Column
+	private int id_Cliente;
+	
+	@Column
+	private int id_Produto;
+	
+	@Column
+	private int id_Funcionario;
+
+}

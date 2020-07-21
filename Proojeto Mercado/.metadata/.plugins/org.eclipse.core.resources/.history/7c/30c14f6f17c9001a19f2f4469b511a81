@@ -1,0 +1,11 @@
+package dao;
+
+import entdidade.Cliente;
+
+public interface ClienteDAO {
+
+	public void inserirCliente(Cliente cliente);
+	
+	public void alterarCliente(Cliente cliente);
+
+}

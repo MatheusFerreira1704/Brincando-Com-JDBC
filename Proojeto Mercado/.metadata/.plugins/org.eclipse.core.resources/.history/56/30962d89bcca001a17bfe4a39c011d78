@@ -1,0 +1,41 @@
+package dao;
+
+import java.util.List;
+
+import entdidade.Funcionario;
+
+public class FuncionarioDAOIpml implements FuncionarioDAO {
+
+	Funcionario funcionario = new Funcionario();
+
+	@Override
+	public void inserirFuncionario(Funcionario funcionario) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void alterarFuncionario(Funcionario funcionario) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void removerFuncionario(Funcionario funcionario) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public List<Funcionario> pesquisarFuncionario(String nome) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Funcionario> listarTodosFuncionarios() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

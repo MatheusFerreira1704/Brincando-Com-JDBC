@@ -1,0 +1,46 @@
+package entdidade;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.Id;
+
+@Entity
+@Table (name = "PRODUTO")
+public class Produto {
+
+	@Id
+	@Column(name = "ID_PRODUTO")
+	private int id_Produto;
+
+	@Column (name="NOME_PRODUTO")
+	private String nomeProduto;
+
+	@Column (name = "QUANTIDADE")
+	private int quantidade;
+
+	public int getId_Produto() {
+		return id_Produto;
+	}
+
+	public void setId_Produto(int id_Produto) {
+		this.id_Produto = id_Produto;
+	}
+
+	public String getNomeProduto() {
+		return nomeProduto;
+	}
+
+	public void setNomeProduto(String nomeProduto) {
+		this.nomeProduto = nomeProduto;
+	}
+
+	public int getQuantidade() {
+		return quantidade;
+	}
+
+	public void setQuantidade(int quantidade) {
+		this.quantidade = quantidade;
+	}
+
+}

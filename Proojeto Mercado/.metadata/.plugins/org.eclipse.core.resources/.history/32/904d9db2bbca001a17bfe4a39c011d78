@@ -1,0 +1,12 @@
+package dao;
+
+import entdidade.Funcionario;
+
+public interface FuncionarioDAO {
+
+	public void inserirFuncionario(Funcionario funcionario);
+
+	public void alterarFuncionario(Funcionario funcionario);
+
+	public void removerFuncionario(Funcionario funcionario);
+}
